@@ -16,7 +16,7 @@
 
 import Foundation
 
-internal import LiveKitWebRTC
+import LiveKitWebRTC
 
 private extension Array where Element: LKRTCVideoCodecInfo {
     func rewriteCodecsIfNeeded() -> [LKRTCVideoCodecInfo] {
@@ -84,7 +84,7 @@ public actor RTC {
     static let videoSenderCapabilities = peerConnectionFactory.rtpSenderCapabilities(forKind: kLKRTCMediaStreamTrackKindVideo)
     static let audioSenderCapabilities = peerConnectionFactory.rtpSenderCapabilities(forKind: kLKRTCMediaStreamTrackKindAudio)
 
-    static let peerConnectionFactory: LKRTCPeerConnectionFactory = {
+    public static let peerConnectionFactory: LKRTCPeerConnectionFactory = {
         // Update pc init lock
         let (admType, bypassVoiceProcessing) = pcFactoryState.mutate {
             $0.isInitialized = true
