@@ -84,7 +84,7 @@ public actor RTC {
     static let videoSenderCapabilities = peerConnectionFactory.rtpSenderCapabilities(forKind: kLKRTCMediaStreamTrackKindVideo)
     static let audioSenderCapabilities = peerConnectionFactory.rtpSenderCapabilities(forKind: kLKRTCMediaStreamTrackKindAudio)
 
-    public static let peerConnectionFactory: LKRTCPeerConnectionFactory = {
+    static let peerConnectionFactory: LKRTCPeerConnectionFactory = {
         // Update pc init lock
         let (admType, bypassVoiceProcessing) = pcFactoryState.mutate {
             $0.isInitialized = true
@@ -104,9 +104,17 @@ public actor RTC {
                                           audioProcessingModule: audioProcessingModule)
     }()
 
+    public static func initializePlayback() {
+        _ = peerConnectionFactory.audioDeviceModule.initPlayback()
+    }
+
+    public static func initializeRecording() {
+        _ = peerConnectionFactory.audioDeviceModule.initRecording()
+    }
+
     // forbid direct access
 
-    public static var audioDeviceModule: LKRTCAudioDeviceModule {
+    static var audioDeviceModule: LKRTCAudioDeviceModule {
         peerConnectionFactory.audioDeviceModule
     }
 
