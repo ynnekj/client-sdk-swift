@@ -45,7 +45,7 @@ private class VideoEncoderFactorySimulcast: LKRTCVideoEncoderFactorySimulcast, @
     }
 }
 
-actor RTC {
+public actor RTC {
     struct PeerConnectionFactoryState {
         var isInitialized: Bool = false
         var admType: AudioDeviceModuleType = .audioEngine
@@ -106,7 +106,7 @@ actor RTC {
 
     // forbid direct access
 
-    static var audioDeviceModule: LKRTCAudioDeviceModule {
+    public static var audioDeviceModule: LKRTCAudioDeviceModule {
         peerConnectionFactory.audioDeviceModule
     }
 
