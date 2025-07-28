@@ -105,7 +105,7 @@ public actor RTC {
     }()
 
     public static func initializePlayback() {
-        _ = peerConnectionFactory.audioDeviceModule.initPlayback()
+        _ = peerConnectionFactory.audioDeviceModule.initPlayout()
     }
 
     public static func initializeRecording() {
